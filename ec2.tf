@@ -271,6 +271,11 @@ resource "aws_flow_log" "vpcflowlogs" {
 resource "aws_s3_bucket" "flowbucket" {
   bucket        = "${local.resource_prefix.value}-flowlogs"
   force_destroy = true
+  
+  logging {
+    target_bucket = "my-log-bucket"
+    target_prefix = "log/"
+  }
 
   tags = merge({
     Name        = "${local.resource_prefix.value}-flowlogs"
