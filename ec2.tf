@@ -85,21 +85,21 @@ resource "aws_security_group" "web-node" {
     to_port   = 80
     protocol  = "tcp"
     cidr_blocks = [
-    "0.0.0.0/0"]
+    "10.4.8.0/24"]
   }
   ingress {
     from_port = 22
     to_port   = 22
     protocol  = "tcp"
     cidr_blocks = [
-    "0.0.0.0/0"]
+    "10.4.8.0/24"]
   }
   egress {
     from_port = 0
     to_port   = 0
     protocol  = "-1"
     cidr_blocks = [
-    "0.0.0.0/0"]
+    "10.4.8.0/24"]
   }
   depends_on = [aws_vpc.web_vpc]
   tags = {
