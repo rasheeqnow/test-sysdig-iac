@@ -144,7 +144,7 @@ resource "aws_subnet" "web_subnet" {
     git_commit           = "6e62522d2ab8f63740e53752b84a6e99cd65696a"
     git_file             = "terraform/aws/ec2.tf"
     git_last_modified_at = "2021-05-02 11:16:31"
-    git_last_modified_by = "nimrodkor@gmail.com"
+    git_last_modified_by = "nimrodko@gmail.com"
     git_modifiers        = "nimrodkor"
     git_org              = "bridgecrewio"
     git_repo             = "terragoat"
