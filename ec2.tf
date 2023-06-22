@@ -85,28 +85,28 @@ resource "aws_security_group" "web-node" {
     to_port   = 80
     protocol  = "tcp"
     cidr_blocks = [
-    "0.0.0.0/0"]
+    "10.4.8.0/24"]
   }
   ingress {
     from_port = 22
     to_port   = 22
     protocol  = "tcp"
     cidr_blocks = [
-    "0.0.0.0/0"]
+    "10.4.8.0/24"]
   }
   egress {
     from_port = 0
     to_port   = 0
     protocol  = "-1"
     cidr_blocks = [
-    "0.0.0.0/0"]
+    "10.4.8.0/24"]
   }
   depends_on = [aws_vpc.web_vpc]
   tags = {
     git_commit           = "d68d2897add9bc2203a5ed0632a5cdd8ff8cefb0"
     git_file             = "terraform/aws/ec2.tf"
     git_last_modified_at = "2020-06-16 14:46:24"
-    git_last_modified_by = "nimrodkor@gmail.com"
+    git_last_modified_by = "nimrodko@gmail.com"
     git_modifiers        = "nimrodkor"
     git_org              = "bridgecrewio"
     git_repo             = "terragoat"
@@ -144,7 +144,7 @@ resource "aws_subnet" "web_subnet" {
     git_commit           = "6e62522d2ab8f63740e53752b84a6e99cd65696a"
     git_file             = "terraform/aws/ec2.tf"
     git_last_modified_at = "2021-05-02 11:16:31"
-    git_last_modified_by = "nimrodkor@gmail.com"
+    git_last_modified_by = "nimrodko@gmail.com"
     git_modifiers        = "nimrodkor"
     git_org              = "bridgecrewio"
     git_repo             = "terragoat"
@@ -271,6 +271,11 @@ resource "aws_flow_log" "vpcflowlogs" {
 resource "aws_s3_bucket" "flowbucket" {
   bucket        = "${local.resource_prefix.value}-flowlogs"
   force_destroy = true
+  
+  logging {
+    target_bucket = "my-log-bucket"
+    target_prefix = "log/"
+  }
 
   tags = merge({
     Name        = "${local.resource_prefix.value}-flowlogs"
